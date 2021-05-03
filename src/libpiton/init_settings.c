@@ -1,7 +1,6 @@
 #include <curses.h>
-#include <signal.h>
 
-void init_console() {
+void init_settings() {
     initscr();
     savetty();
     nonl();
@@ -10,5 +9,4 @@ void init_console() {
     timeout(0);
     leaveok(stdscr, TRUE);
     curs_set(0);
-    
 }
