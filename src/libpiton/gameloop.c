@@ -6,6 +6,7 @@
 #include "init_board.h"
 #include "close_game.h"
 #include "put_lib.h"
+#include "gameover_menu.h"
 
 typedef struct position {
 	int line;
@@ -51,8 +52,8 @@ void put_food(char** board) {
 void check_head(char** board) {
     if (board[piton[0].line][piton[0].col] != ' '
         && board[piton[0].line][piton[0].col] != FOOD) {
-        //gameover_menu(); //to do!
-        close_game();
+        gameover_menu(score); 
+        //close_game();
     }
 }
 
