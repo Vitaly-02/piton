@@ -17,7 +17,7 @@ void menu() {
     mvwprintw(stdscr, lines/2, (cols/2)-9, "%s", mesg1);
     mvwprintw(stdscr, (lines/2)+1, (cols/2)-9, "%s", mesg2);
     attroff(A_STANDOUT);
-    put_border();
+    put_border(board);
     //resolution (delete in future)
     mvwprintw(stdscr, lines - 2, 1, "Resolution: lines = %d columns = %d", lines, cols);
     //processing of pressed key
