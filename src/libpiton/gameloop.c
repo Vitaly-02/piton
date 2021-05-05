@@ -7,6 +7,7 @@
 #include "close_game.h"
 #include "put_lib.h"
 #include "gameover_menu.h"
+#include "win_menu.h"
 
 typedef struct position {
 	int line;
@@ -55,6 +56,13 @@ void check_head(char** board) {
         direction = STOP;
         while(true) {
         gameover_menu(score, board);
+        }
+        return;
+    }
+    if (piton_length == MAXPITON) {
+    	direction = STOP;
+        while(true) {
+        win_menu(score, board);
         }
         return;
     }
