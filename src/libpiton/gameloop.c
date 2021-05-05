@@ -67,13 +67,13 @@ void change_direction() {
 		return;
 	}
 	    
-	if(keypress == 'w' || keypress == 'W') { //up
+	if((keypress == 'w' || keypress == 'W') && direction != DOWN) { //up
 		direction = UP;
-	} else if(keypress == 'a' || keypress == 'A') { //left
+	} else if((keypress == 'a' || keypress == 'A') && direction != RIGHT) { //left
 		direction = LEFT;
-	} else if(keypress == 's' || keypress == 'S') { //down
+	} else if((keypress == 's' || keypress == 'S') && direction != UP) { //down
 		direction = DOWN;
-	} else if(keypress == 'd' || keypress == 'D') { //right
+	} else if((keypress == 'd' || keypress == 'D') && direction != LEFT) { //right
 		direction = RIGHT;
 	}
 }
@@ -116,6 +116,8 @@ void logic(char** board) {
 
 void gameloop(char **board) {
 	score = 0;
+	piton_size = 1;
+	piton_length = MINPITON;
 	//its nessesary here
 	init_settings();
 	board = init_board();
@@ -125,6 +127,10 @@ void gameloop(char **board) {
 	mvwprintw(stdscr, 0, 0, "SCORE: %d", score);
 	attroff(A_STANDOUT);
 	//init piton
+	//for(int i = 0; i < MAXPITON; i++) {
+	//	piton[i].line = -1;
+	//	piton[i].col = -1;
+	//}
 	piton[0] = random_position(board);
 	attron(COLOR_PAIR(COLOR_GREEN));
 	put(piton[0].line, piton[0].col, 'O', board);
