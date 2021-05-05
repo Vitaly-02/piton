@@ -52,8 +52,11 @@ void put_food(char** board) {
 void check_head(char** board) {
     if (board[piton[0].line][piton[0].col] != ' '
         && board[piton[0].line][piton[0].col] != FOOD) {
-        gameover_menu(score); 
-        //close_game();
+        direction = STOP;
+        while(true) {
+        gameover_menu(score, board);
+        }
+        return;
     }
 }
 
@@ -84,7 +87,9 @@ void change_head() {
         piton[0].line--;
     } else if (direction == DOWN) {
         piton[0].line++;
-    } 
+    } else if (direction == STOP) {
+    	return;
+    }
 }
 
 void logic(char** board) {
@@ -110,6 +115,7 @@ void logic(char** board) {
 }
 
 void gameloop(char **board) {
+	score = 0;
 	//its nessesary here
 	init_settings();
 	board = init_board();
@@ -127,7 +133,6 @@ void gameloop(char **board) {
 	put_food(board);
 	//logic
 	while(true) {
-        
         if(direction != STOP) {
         	logic(board);
         }
