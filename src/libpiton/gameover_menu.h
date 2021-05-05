@@ -1,2 +1,2 @@
 #pragma once
-void gameover_menu(int score);
+void gameover_menu(int score, char** board);

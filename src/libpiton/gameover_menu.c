@@ -1,10 +1,8 @@
 #include <curses.h>
+#include "gameloop.h"
+#include "menu.h"
 
-#include "init_board.h"
-#include "close_game.h"
-#include "put_lib.h"
-
-void gameover_menu(int score) {
+void gameover_menu(int score, char** board) {
 	int lines, cols; 
     getmaxyx(stdscr, lines, cols);
     attron(A_STANDOUT|COLOR_PAIR(COLOR_RED));
@@ -19,8 +17,22 @@ void gameover_menu(int score) {
     mvwprintw(stdscr, (lines/2), (cols/2)-9, "PRESS 'R' TO RESTART");
     mvwprintw(stdscr, (lines/2)+1, (cols/2)-9, "PRESS 'Q' TO GO MENU");
     attroff(A_STANDOUT);
-    refresh();
-	napms(3000);
-	close_game();
-	
+	int keypress;
+    keypress = wgetch(stdscr);
+    if (keypress == ERR) {
+        return;
+    }
+    if (keypress == 'q'||keypress == 'Q') {
+    	clear();
+        refresh();
+        while(true) {
+        	menu();
+        }
+    }
+    if (keypress == 'r'||keypress == 'R') {
+    	clear();
+        refresh();
+    	gameloop(board);
+    }
+	return;
 }
