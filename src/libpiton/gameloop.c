@@ -63,13 +63,13 @@ void change_direction() {
 		return;
 	}
 	    
-	if(keypress == 'w') { //up
+	if(keypress == 'w' || keypress == 'W') { //up
 		direction = UP;
-	} else if(keypress == 'a') { //left
+	} else if(keypress == 'a' || keypress == 'A') { //left
 		direction = LEFT;
-	} else if(keypress == 's') { //down
+	} else if(keypress == 's' || keypress == 'S') { //down
 		direction = DOWN;
-	} else if(keypress == 'd') { //right
+	} else if(keypress == 'd' || keypress == 'D') { //right
 		direction = RIGHT;
 	}
 }
