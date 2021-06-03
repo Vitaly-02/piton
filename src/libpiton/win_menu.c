@@ -1,7 +1,7 @@
 #include <curses.h>
 #include "gameloop.h"
 #include "menu.h"
-
+// меню победы
 void win_menu(int score, char** board) {
 	int lines, cols; 
     getmaxyx(stdscr, lines, cols);
@@ -19,6 +19,7 @@ void win_menu(int score, char** board) {
     mvwprintw(stdscr, (lines/2)+2, (cols/2)-9, "PRESS 'R' TO RESTART");
     mvwprintw(stdscr, (lines/2)+3, (cols/2)-9, "PRESS 'Q' TO GO MENU");
     attroff(A_STANDOUT);
+// обработка нажатой клавиши
     int keypress;
     keypress = wgetch(stdscr);
     if (keypress == ERR) {

@@ -1,11 +1,12 @@
 #include <curses.h>
-
+// фунция, которая рисует символ 
+// и добавляет его в массив board
 void put(int line, int col, char symbol, char** board) {
     board[line][col] = symbol;
     move(line, col);
     addch(symbol);
 }
-
+// рисовка + добавление в массив board границ
 void put_border(char** board) {
 	#define BORDER '#'
 	int lines, cols; 
@@ -19,14 +20,13 @@ void put_border(char** board) {
     	put(i, cols-1, BORDER, board);
     }
 }
-
+// рисовка надписи в главном меню
 void put_pit() {
 	const char *mesg1 = " _ _ _   _   _   _ _ _   _ _ _   _   _ ";
 	const char *mesg2 =	"|  _  | | | | | |_   _| |  _  | | | | |";
 	const char *mesg3 =	"| | | | | |/  |   | |   | | | | | |_| |";
 	const char *mesg4 =	"| | | | |  /| |   | |   | |_| | |  _  |";
 	const char *mesg5 = "|_| |_| |_| |_|   |_|   |_ _ _| |_| |_|";
-	//initscr();
 	int lines, cols;
     getmaxyx(stdscr, lines, cols);
 	attron(A_BOLD);
@@ -37,5 +37,3 @@ void put_pit() {
     mvwprintw(stdscr, (lines/2)-2, (cols/2)-19, "%s", mesg5);
     attroff(A_BOLD);
 }
-
-

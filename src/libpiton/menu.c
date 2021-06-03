@@ -3,13 +3,16 @@
 #include "close_game.h"
 #include "gameloop.h"
 #include "put_lib.h"
-
+// функция главного меню
 void menu() {
     initscr();
     int lines, cols; 
-    getmaxyx(stdscr, lines, cols); //to get res
+    getmaxyx(stdscr, lines, cols); 
+    // двумерный массив символов, в котором будут
+    // храниться границы - #, еда - @ и тело змеи - O
     char **board;
     board = init_board();
+    // функция, которая выводит надпись ПИТОН
     put_pit();
     const char *mesg1 = "PRESS 'S' TO START";
 	const char *mesg2 = "PRESS 'Q' TO EXIT ";
@@ -18,10 +21,7 @@ void menu() {
     mvwprintw(stdscr, (lines/2)+1, (cols/2)-9, "%s", mesg2);
     attroff(A_STANDOUT);
     put_border(board);
-    //resolution (delete in future)
-    mvwprintw(stdscr, lines - 2, 1, "Resolution: lines = %d columns = %d", lines, cols);
-    //processing of pressed key
-    //ERR - nothing pressed
+    // обработка нажатых клавиш
 	int keypress;
     keypress = wgetch(stdscr);
     if (keypress == ERR) {

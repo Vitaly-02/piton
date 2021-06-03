@@ -1,5 +1,5 @@
 #include <curses.h>
-
+// заполняет массив board пробелами
 void clear_board(char** board) {
     int i, j;
     int lines, cols;

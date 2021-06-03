@@ -1,5 +1,5 @@
 #include <curses.h>
-
+// установка настроек консоли
 void init_settings() {
     initscr();
     savetty();
@@ -9,6 +9,7 @@ void init_settings() {
     timeout(0);
     leaveok(stdscr, TRUE);
     curs_set(0);
+// инициализация цветов для ncurses
     if (has_colors()) {
         start_color(); 
         if (use_default_colors() != ERR) {    
