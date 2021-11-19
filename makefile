@@ -1,7 +1,8 @@
 APP_NAME = piton
 LIB_NAME = libpiton
 
-CFLAGS = -Wall -Wextra -Werror -lncurses -I src -MP -MMD
+CFLAGS = -Wall -Wextra -Werror -I src -MP -MMD
+LDFLAGS = -lncurses
 
 BIN_DIR = bin
 OBJ_DIR = obj
@@ -26,13 +27,13 @@ all: $(APP_PATH)
 -include $(DEPS)
 
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@ $(LDFLAGS)
 
 .PHONY: clean
 clean:
